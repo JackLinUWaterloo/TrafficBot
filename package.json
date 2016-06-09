@@ -1,0 +1,25 @@
+{
+  "name": "trafficbot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "config.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JackLinUWaterloo/TrafficBot.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JackLinUWaterloo/TrafficBot/issues"
+  },
+  "homepage": "https://github.com/JackLinUWaterloo/TrafficBot#readme",
+  "dependencies": {
+    "@kikinteractive/kik": "^2.0.3",
+    "http": "0.0.0",
+    "request": "^2.72.0",
+    "util": "^0.10.3"
+  }
+}
