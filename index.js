@@ -8,7 +8,7 @@ let Bot  = require('@kikinteractive/kik');
 let bot = new Bot({
     username: 'trafficwatch',
     apiKey: '3d46fc64-c8a7-4b7b-b78d-339b9e335600',
-    baseUrl: 'https://d160c049.ngrok.io'
+    baseUrl: 'https://80c7e18d.ngrok.io'
 });
 
 bot.updateBotConfiguration();
@@ -20,13 +20,13 @@ bot.onTextMessage((message) => {
                 message.reply(`Hey ${user.firstName}! Hope you are doing fine!`);
             });
     } else {
-        
+
     }
 });
 
 // // To one user (a.username)
 // bot.send(Bot.Message.text('Hey, nice to meet you!'), 'iocds');
-// 
+
 // // You can use a shorthand for text messages to keep things a bit cleaner
 // bot.send('Getting started is super easy!', 'iocds');
 
@@ -34,7 +34,7 @@ bot.onTextMessage((message) => {
 let server = http
     .createServer(bot.incoming())
     .listen(process.env.PORT || 8080);
-    
+
 server.on('request', function(req, res){
     console.log(req.method);
     console.log(req.headers);
