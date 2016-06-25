@@ -17,22 +17,32 @@ var requestUrl = 'https://traffic.cit.api.here.com/traffic/6.0/incidents/json' +
 
 // console.log(requestUrl);
 
-request.get({
-    url : requestUrl,
-    qs:{
-        'app_id': 'MvDdxhQdDnQMCQxVG2u9',
-        'app_code': 'mEDyU_ALl5rNUSsDSbteDQ',
-        'c': 'CA',
-        'lg': 'en',
-        'il8n': true,
-        'localtime': true
+function ExtractData() {
 
-    }
-}, function(err, res, body){
-    if(err){
-        console.log(err);
-    } else {
-        console.log(res.statusCode);
-        console.log(body);
-    }
-});
+}
+
+ExtractData.prototype.extractionRequest = function extractionRequest(message, callback) {
+  console.log(message);
+  request.get({
+      url : requestUrl,
+      qs:{
+          'app_id': 'MvDdxhQdDnQMCQxVG2u9',
+          'app_code': 'mEDyU_ALl5rNUSsDSbteDQ',
+          'c': 'CA',
+          'lg': 'en',
+          'il8n': true,
+          'localtime': true
+
+      }
+  }, function(err, res, body){
+      if(err){
+          console.log(err);
+      } else {
+          console.log(res.statusCode);
+          // console.log(body);
+          callback(res.statusCode.toString());
+      }
+  });
+}
+
+module.exports = ExtractData;

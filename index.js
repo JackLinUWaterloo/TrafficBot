@@ -3,32 +3,32 @@
 let util = require('util');
 let http = require('http');
 let Bot  = require('@kikinteractive/kik');
+let ExtractData = require('./trafficRequest');
 
 // Configure the bot API endpoint, details for your bot
 let bot = new Bot({
     username: 'trafficwatch',
     apiKey: '3d46fc64-c8a7-4b7b-b78d-339b9e335600',
-    baseUrl: 'https://80c7e18d.ngrok.io'
+    baseUrl: 'https://e1ca1c70.ngrok.io'
 });
 
 bot.updateBotConfiguration();
 
 bot.onTextMessage((message) => {
-    if(message.body == "Hello" || message.body == "Hi") {
+    var dataExtractor = new ExtractData();
+    if(message.body == "Hello" || message.body == "Hi" || message.body == 'Hey') {
         bot.getUserProfile(message.from)
             .then((user) => {
                 message.reply(`Hey ${user.firstName}! Hope you are doing fine!`);
             });
     } else {
-
+        dataExtractor.extractionRequest(message.body,
+          function(returnMessage) {
+            message.reply(returnMessage);
+          }
+        );
     }
 });
-
-// // To one user (a.username)
-// bot.send(Bot.Message.text('Hey, nice to meet you!'), 'iocds');
-
-// // You can use a shorthand for text messages to keep things a bit cleaner
-// bot.send('Getting started is super easy!', 'iocds');
 
 // Set up your server and start listening
 let server = http
