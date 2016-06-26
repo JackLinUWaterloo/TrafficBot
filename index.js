@@ -22,11 +22,29 @@ bot.onTextMessage((message) => {
                 message.reply(`Hey ${user.firstName}! Hope you are doing fine!`);
             });
     } else {
-        dataExtractor.extractionRequest(message.body,
-          function(returnMessage) {
-            message.reply(returnMessage);
-          }
-        );
+        if(message.body.indexOf('Flow') > -1){
+            dataExtractor.flowExtractionRequest(message.body.substring(message.body.indexOf(' ')+1),
+                function(returnMessage){
+                    if(returnMessage && returnMessage != ''){
+                        message.reply(returnMessage);
+                    } else {
+                        message.reply('Road cannot be found!');
+                    }
+                }
+            );
+        } else if(message.body.indexOf('Incident') > -1){
+            dataExtractor.extractionRequest(message.body.substring(message.body.indexOf(' ')+1),
+                function(returnMessage) {
+                    if(returnMessage && returnMessage != ''){
+                        message.reply(returnMessage);
+                    } else {
+                        message.reply('Road is congestion free or invalid input!');
+                    }
+                }
+            );
+        } else {
+            message.reply('Sorry, road not found!');
+        }
     }
 });
 
