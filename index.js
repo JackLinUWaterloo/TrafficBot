@@ -24,7 +24,12 @@ bot.onTextMessage((message) => {
     } else {
         dataExtractor.extractionRequest(message.body,
           function(returnMessage) {
-            message.reply(returnMessage);
+            if(returnMessage && returnMessage != ''){
+              console.log(returnMessage);
+              message.reply(returnMessage);
+            } else {
+                message.reply('Road is congestion free or invalid input!');
+            }
           }
         );
     }
