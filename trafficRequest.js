@@ -1,6 +1,7 @@
 var request = require('request');
 var lat = 43.6534922;
 var lon = -79.3839729;
+
 var requestUrl;
 var returnMessage = '';
 
@@ -42,7 +43,6 @@ function generateFlowReturnMessage(userMessage, data, callback){
     }
     returnMessage = '';
 }
-
 
 ExtractData.prototype.extractionRequest = function extractionRequest(userMessage, callback){
     var z = 8,       // Zoom level
